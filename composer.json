@@ -1,0 +1,28 @@
+{
+    "name": "7x/sdk",
+    "type": "library",
+    "description": "A PHP SDK for the 7x API Suite",
+    "keywords": [
+        "APIs",
+        "7x",
+        "client"
+    ],
+    "require": {
+        "illuminate/http": "^9.48",
+        "monolog/monolog": "^3.2",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "x7x\\Sdk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "x7x\\Sdk\\Tests\\": "tests/"
+        }
+    }
+}
