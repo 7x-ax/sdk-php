@@ -1,3 +1,4 @@
+[![Latest Stable Version](http://poser.pugx.org/7x/sdk/v)](https://packagist.org/packages/7x/sdk) [![Total Downloads](http://poser.pugx.org/7x/sdk/downloads)](https://packagist.org/packages/7x/sdk) [![Latest Unstable Version](http://poser.pugx.org/7x/sdk/v/unstable)](https://packagist.org/packages/7x/sdk) [![License](http://poser.pugx.org/7x/sdk/license)](https://packagist.org/packages/7x/sdk) [![PHP Version Require](http://poser.pugx.org/7x/sdk/require/php)](https://packagist.org/packages/7x/sdk)
 # A PHP SDK for 7x APIs
 
 ## Install
