@@ -1,36 +1,27 @@
 <?php
 
-namespace x7x\Sdk\Tests;
+namespace SevenEx\Sdk\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
-use x7x\Sdk\Timezone;
+use SevenEx\SDK\Timezone;
+use SevenEx\DTO\Timezone as TimezoneDTO;
 
 class TimezoneTest extends TestCase
 {
     public Timezone $tz;
     protected function setUp(): void
     {
-        $this->tz = new Timezone('', LogLevel::DEBUG);
+        $this->tz = new Timezone('aea14b6f8aca5b5151af882b69f3a788', LogLevel::DEBUG);
     }
 
     public function testTimezoneFloat()
     {
         $x = $this->tz->get(22.2223, 33.3334);
-        $this->assertIsArray($x);
-        $this->assertEquals('Africa/Cairo', $x['timezones'][0]);
-        $this->assertArrayHasKey('latitude', $x);
-        $this->assertArrayHasKey('longitude', $x);
-    }
-
-    public function testTimezoneString()
-    {
-        $x = $this->tz->get('22.22', '33.33');
-        $this->assertIsArray($x);
-        $this->assertArrayHasKey('timezones', $x);
-        $this->assertEquals('Africa/Cairo', $x['timezones'][0]);
-        $this->assertArrayHasKey('latitude', $x);
-        $this->assertArrayHasKey('longitude', $x);
+        $this->assertInstanceOf(TimezoneDTO::class, $x);
+        $this->assertEquals('Africa/Cairo', $x->timezones[0]);
+        $this->assertEquals(22.2223, $x->latitude);
+        $this->assertEquals(33.3334, $x->longitude);
     }
 
 }

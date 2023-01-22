@@ -17,12 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "x7x\\Sdk\\": "src/"
+            "SevenEx\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "x7x\\Sdk\\Tests\\": "tests/"
+            "SevenEx\\Tests\\": "tests/"
         }
     }
 }

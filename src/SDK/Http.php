@@ -1,11 +1,11 @@
 <?php
 
-namespace x7x\Sdk;
+namespace SevenEx\SDK;
 
 use Illuminate\Http\Client\Factory;
+use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LogLevel;
-use Monolog\Handler\StreamHandler;
 
 class Http
 {
