@@ -23,7 +23,7 @@ $result->timezones; // An array of timezones matching the co-ordinates. Mostly j
 
 ### Distance API
 
-## Distance by Coordinates
+#### Distance by Coordinates
 ```
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Distance;
@@ -35,7 +35,7 @@ $result->distance;
 $result->unit; // km if you specified km, or mi if you specified mi. Defaults to km if not specified.
 ```
 
-## Distance by Address
+#### Distance by Address
 ```
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Distance;
