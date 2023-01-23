@@ -15,7 +15,7 @@ class TimezoneTest extends TestCase
         $this->tz = new Timezone(getenv('APIKEY'), LogLevel::DEBUG);
     }
 
-    public function testTimezoneFloat()
+    public function testTimezone()
     {
         $x = $this->tz->get(22.2223, 33.3334);
         $this->assertInstanceOf(TimezoneDTO::class, $x);

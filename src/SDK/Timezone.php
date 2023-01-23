@@ -6,7 +6,6 @@ use SevenEx\DTO\Timezone as TimezoneDTO;
 use SevenEx\Utils\Mapper;
 use CuyZ\Valinor\Mapper\Source\Source;
 use CuyZ\Valinor\Mapper\MappingError;
-use CuyZ\Valinor\Mapper\Tree\Message\Messages;
 class Timezone extends Http
 {
 
@@ -21,6 +20,7 @@ class Timezone extends Http
                 return Mapper::get()->map(TimezoneDTO::class, Source::array($x->json('data')));
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
+                Mapper::logErrors($this->logger, $error);
                 throw new \Exception('Mapping failure: ' . $error->getMessage());
             }
         }

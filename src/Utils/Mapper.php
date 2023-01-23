@@ -26,8 +26,9 @@ class Mapper
 
     public static function logErrors(Logger $logger, MappingError $error): void
     {
+        echo "<pre>";
         foreach (Messages::flattenFromNode($error->node()) as $message) {
-            $logger->error($message->body());
+            $logger->error($message->originalMessage());
         }
     }
 

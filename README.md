@@ -21,7 +21,30 @@ $result = $tz->get('22.22', '33.33');
 $result->timezones; // An array of timezones matching the co-ordinates. Mostly just contains a single string.
 ```
 
-### Geocode API
-
-
 ### Distance API
+
+## Distance by Coordinates
+```
+use Psr\Log\LogLevel;
+use SevenEx\SDK\Distance;
+
+$d = new Distance('API_KEY', LogLevel::DEBUG);
+$result = $d->getByCoordinates('22.22', '33.33', '44.44', '55.55', 'km');
+// $result is an instance of SevenEx\DTO\Distance.
+$result->distance;
+$result->unit; // km if you specified km, or mi if you specified mi. Defaults to km if not specified.
+```
+
+## Distance by Address
+```
+use Psr\Log\LogLevel;
+use SevenEx\SDK\Distance;
+
+$d = new Distance('API_KEY', LogLevel::DEBUG);
+$result = $d->getByAddress('Trafalgar Square, London, UK', 'Tower Bridge, London, UK', 'mi');
+// $result is an instance of SevenEx\DTO\Distance.
+$result->distance;
+$result->unit; // mi in this case.
+```
+
+### Geocode API
