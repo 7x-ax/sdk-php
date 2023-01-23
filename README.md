@@ -47,4 +47,4 @@ $result->distance;
 $result->unit; // mi in this case.
 ```
 
-### Geocode API
+### Geocoding API
