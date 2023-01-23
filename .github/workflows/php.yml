@@ -37,5 +37,5 @@ jobs:
 
     - name: Run test suite
       run: |
-        export APIKEY=${{ secrets.DOCKERHUB_USERNAME }}
+        export APIKEY=${{ secrets.APIKEY }}
         vendor/bin/phpunit tests/
