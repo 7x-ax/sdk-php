@@ -3,7 +3,7 @@
 
 ## Install
 
-```
+```php
 composer require 7x/sdk
 ```
 
@@ -11,7 +11,7 @@ composer require 7x/sdk
 
 ### Timezone API
 
-```
+```php
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Timezone;
 
@@ -24,7 +24,7 @@ $result->timezones; // An array of timezones matching the co-ordinates. Mostly j
 ### Distance API
 
 #### Distance by Coordinates
-```
+```php
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Distance;
 
@@ -36,7 +36,7 @@ $result->unit; // km if you specified km, or mi if you specified mi. Defaults to
 ```
 
 #### Distance by Address
-```
+```php
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Distance;
 
