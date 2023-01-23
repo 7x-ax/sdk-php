@@ -2,18 +2,12 @@
 
 namespace SevenEx\DTO;
 
-class Timezone
+final class Timezone
 {
-    public float $latitude;
-
-    public float $longitude;
-
-    public array $timezones;
-
-    public function __construct(float $latitude, float $longitude, array $timezones) {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->timezones = $timezones;
-    }
+    public function __construct(
+        readonly float $latitude,
+        readonly float $longitude,
+        /** @var list<string> */
+        readonly array $timezones) {}
 
 }
