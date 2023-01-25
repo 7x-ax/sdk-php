@@ -1,6 +1,8 @@
 <?php
 
-namespace SevenEx\DTO;
+namespace SevenEx\DTO\Distance;
+
+use SevenEx\DTO\Common\Coordinates;
 
 final class DistanceCoordinates
 {

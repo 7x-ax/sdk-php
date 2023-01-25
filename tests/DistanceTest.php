@@ -4,10 +4,10 @@ namespace SevenEx\Sdk\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
-use SevenEx\DTO\DistanceCoordinates;
-use SevenEx\DTO\DistanceMeta;
+use SevenEx\DTO\Distance\Distance as DistanceDTO;
+use SevenEx\DTO\Distance\DistanceCoordinates;
+use SevenEx\DTO\Distance\DistanceMeta;
 use SevenEx\SDK\Distance;
-use SevenEx\DTO\Distance as DistanceDTO;
 
 class DistanceTest extends TestCase
 {

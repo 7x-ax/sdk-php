@@ -4,20 +4,21 @@ namespace SevenEx\SDK;
 
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Source;
-use SevenEx\DTO\Distance\Distance as DistanceDTO;
+use SevenEx\DTO\Geocode\GeocodeCollection as GeocodeDTO;
 use SevenEx\Utils\Mapper;
 
-class Distance extends Http
+class Geocode extends Http
 {
-    protected string $apiurl = '/distance/v1';
-    public function getByCoordinates(float $fromLatitude, float $fromLongitude, float $toLatitude, float $toLongitude, string $unit = 'km'): DistanceDTO|\Exception
+    protected string $apiurl = '/geocode/v1';
+
+    public function geocode(string $location): GeocodeDTO|\Exception
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
-            ->get($this->baseurl . $this->apiurl . "/bycoordinates/$fromLatitude,$fromLatitude,$toLatitude,$toLongitude?unit=$unit");
+            ->get($this->baseurl . $this->apiurl . "/geocode/$location");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
             try {
-                return Mapper::get()->map(DistanceDTO::class, Source::array($x->json('data')));
+                return Mapper::get()->map(GeocodeDTO::class, Source::array($x->json('data')));
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
@@ -30,14 +31,14 @@ class Distance extends Http
 
     }
 
-    public function getByAddress(string $from, string $to, string $unit = 'km'): DistanceDTO|\Exception
+    public function reverse(string $latitude, string $longitude): GeocodeDTO|\Exception
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
-            ->get($this->baseurl . $this->apiurl . "/byaddress/$from/$to?unit=$unit");
+            ->get($this->baseurl . $this->apiurl . "/reverse/$latitude,$longitude");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
             try {
-                return Mapper::get()->map(DistanceDTO::class, Source::array($x->json('data')));
+                return Mapper::get()->map(GeocodeDTO::class, Source::array($x->json('data')));
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);

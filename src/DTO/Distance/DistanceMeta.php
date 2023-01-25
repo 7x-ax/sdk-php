@@ -1,6 +1,6 @@
 <?php
 
-namespace SevenEx\DTO;
+namespace SevenEx\DTO\Distance;
 
 final class DistanceMeta
 {

@@ -2,10 +2,11 @@
 
 namespace SevenEx\SDK;
 
-use SevenEx\DTO\Timezone as TimezoneDTO;
-use SevenEx\Utils\Mapper;
-use CuyZ\Valinor\Mapper\Source\Source;
 use CuyZ\Valinor\Mapper\MappingError;
+use CuyZ\Valinor\Mapper\Source\Source;
+use SevenEx\DTO\Timezone\Timezone as TimezoneDTO;
+use SevenEx\Utils\Mapper;
+
 class Timezone extends Http
 {
 
