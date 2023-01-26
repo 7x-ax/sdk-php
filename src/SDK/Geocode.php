@@ -51,5 +51,25 @@ class Geocode extends Http
 
     }
 
+    public function search(string $searchString): GeocodeDTO|\Exception
+    {
+        $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->get($this->baseurl . $this->apiurl . "/geocode/$searchString");
+        if ($x->status() === 200) {
+            $this->logger->debug('Response OK', ['response' => $x->json()]);
+            try {
+                return Mapper::get()->map(GeocodeDTO::class, Source::array($x->json('data')));
+            } catch (MappingError $error) {
+                $this->logger->error($error->getMessage());
+                Mapper::logErrors($this->logger, $error);
+                throw new \Exception('Mapping failure: ' . $error->getMessage());
+            }
+        }
+
+        $this->logger->error('Response NOT OK', ['response' => $x->json()]);
+        throw new \Exception('The 7x Timezone API did not return a valid response.');
+
+    }
+
 
 }
