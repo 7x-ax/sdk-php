@@ -50,6 +50,8 @@ $result->unit; // mi in this case.
 ```
 
 ### Geocoding API
+
+#### Geocode by City / Address String 
 ```php
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Geocode;
@@ -63,7 +65,7 @@ foreach ($result->objects as $geocoded) {
 }
 ```
 
-### Reverse Geocoding API
+#### Reverse Geocoding by Coordinates
 ```php
 use Psr\Log\LogLevel;
 use SevenEx\SDK\Geocode;
