@@ -65,6 +65,20 @@ foreach ($result->objects as $geocoded) {
 }
 ```
 
+#### Geocode Search (to build search suggest / autocomplete functionality)
+```php
+use Psr\Log\LogLevel;
+use SevenEx\SDK\Geocode;
+
+$g = new Geocode('API_KEY', LogLevel::DEBUG);
+$result = $g->search('Lon');
+// $result is an instance of SevenEx\DTO\Geocode\GeocodeCollection. This contains an array of objects.
+foreach ($result->objects as $geocoded) {
+    var_dump($geocoded->coordinates); // Instance of SevenEx\DTO\Common\Coordinates
+    var_dump($geocoded->location); // Instance of SevenEx\DTO\Geocode\Location
+}
+```
+
 #### Reverse Geocoding by Coordinates
 ```php
 use Psr\Log\LogLevel;
