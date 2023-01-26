@@ -17,6 +17,14 @@ class GeocodeTest extends TestCase
         $this->g = new Geocode(getenv('APIKEY'), LogLevel::DEBUG);
     }
 
+    public function testGeocodeSearch()
+    {
+        $x = $this->g->search('Lon');
+        $this->assertInstanceOf(GeocodeDTO::class, $x);
+        $this->assertInstanceOf(CoordinatesDTO::class, $x->objects[0]->coordinates);
+        $this->assertInstanceOf(LocationDTO::class, $x->objects[0]->location);
+    }
+
     public function testGeocode()
     {
         $x = $this->g->geocode('London, UK');
