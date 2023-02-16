@@ -5,6 +5,7 @@ namespace SevenEx\SDK;
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Source;
 use SevenEx\DTO\Geocode\GeocodeCollection as GeocodeDTO;
+use SevenEx\Utils\Errors;
 use SevenEx\Utils\Mapper;
 
 class Geocode extends Http
@@ -27,7 +28,8 @@ class Geocode extends Http
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
-        throw new \Exception('The 7x Timezone API did not return a valid response.');
+
+        return Errors::handle($x);
 
     }
 
