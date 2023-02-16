@@ -4,6 +4,7 @@ namespace SevenEx\Sdk\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
+use SevenEx\DTO\Error;
 use SevenEx\DTO\Geocode\GeocodeCollection as GeocodeDTO;
 use SevenEx\DTO\Geocode\Location as LocationDTO;
 use SevenEx\DTO\Common\Coordinates as CoordinatesDTO;
@@ -17,17 +18,23 @@ class GeocodeTest extends TestCase
         $this->g = new Geocode(getenv('APIKEY'), LogLevel::DEBUG);
     }
 
-    public function testGeocodeSearch()
+    public function testGeocode()
     {
-        $x = $this->g->search('Lon');
+        $x = $this->g->geocode('London, UK');
         $this->assertInstanceOf(GeocodeDTO::class, $x);
         $this->assertInstanceOf(CoordinatesDTO::class, $x->objects[0]->coordinates);
         $this->assertInstanceOf(LocationDTO::class, $x->objects[0]->location);
     }
 
-    public function testGeocode()
+    public function testGeocodeFailure()
     {
-        $x = $this->g->geocode('London, UK');
+        $x = $this->g->geocode('xdfxdfxdfdf');
+        $this->assertInstanceOf(Error::class, $x);
+    }
+
+    public function testGeocodeSearch()
+    {
+        $x = $this->g->search('Lon');
         $this->assertInstanceOf(GeocodeDTO::class, $x);
         $this->assertInstanceOf(CoordinatesDTO::class, $x->objects[0]->coordinates);
         $this->assertInstanceOf(LocationDTO::class, $x->objects[0]->location);

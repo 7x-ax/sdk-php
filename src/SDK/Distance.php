@@ -5,12 +5,14 @@ namespace SevenEx\SDK;
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Source;
 use SevenEx\DTO\Distance\Distance as DistanceDTO;
+use SevenEx\DTO\Error;
 use SevenEx\Utils\Mapper;
 
 class Distance extends Http
 {
     protected string $apiurl = '/distance/v1';
-    public function getByCoordinates(float $fromLatitude, float $fromLongitude, float $toLatitude, float $toLongitude, string $unit = 'km'): DistanceDTO|\Exception
+    public function getByCoordinates(float $fromLatitude, float $fromLongitude,
+                                     float $toLatitude, float $toLongitude, string $unit = 'km'): DistanceDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->get($this->baseurl . $this->apiurl . "/bycoordinates/$fromLatitude,$fromLatitude,$toLatitude,$toLongitude?unit=$unit");
@@ -21,16 +23,18 @@ class Distance extends Http
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
-                throw new \Exception('Mapping failure: ' . $error->getMessage());
+
+                return new Error($x->json('data')['error']);
             }
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
-        throw new \Exception('The 7x Timezone API did not return a valid response.');
+
+        return new Error($x->json('data')['error']);
 
     }
 
-    public function getByAddress(string $from, string $to, string $unit = 'km'): DistanceDTO|\Exception
+    public function getByAddress(string $from, string $to, string $unit = 'km'): DistanceDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->get($this->baseurl . $this->apiurl . "/byaddress/$from/$to?unit=$unit");
@@ -41,13 +45,14 @@ class Distance extends Http
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
-                throw new \Exception('Mapping failure: ' . $error->getMessage());
+
+                return new Error($x->json('data')['error']);
             }
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
-        throw new \Exception('The 7x Timezone API did not return a valid response.');
 
+        return new Error($x->json('data')['error']);
     }
 
 

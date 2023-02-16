@@ -4,15 +4,15 @@ namespace SevenEx\SDK;
 
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Source;
+use SevenEx\DTO\Error;
 use SevenEx\DTO\Geocode\GeocodeCollection as GeocodeDTO;
-use SevenEx\Utils\Errors;
 use SevenEx\Utils\Mapper;
 
 class Geocode extends Http
 {
     protected string $apiurl = '/geocode/v1';
 
-    public function geocode(string $location): GeocodeDTO|\Exception
+    public function geocode(string $location): GeocodeDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->get($this->baseurl . $this->apiurl . "/geocode/$location");
@@ -23,17 +23,17 @@ class Geocode extends Http
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
-                throw new \Exception('Mapping failure: ' . $error->getMessage());
+
+                return new Error($x->json('data')['error']);
             }
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
 
-        return Errors::handle($x);
-
+        return new Error($x->json('data')['error']);
     }
 
-    public function reverse(string $latitude, string $longitude): GeocodeDTO|\Exception
+    public function reverse(string $latitude, string $longitude): GeocodeDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->get($this->baseurl . $this->apiurl . "/reverse/$latitude,$longitude");
@@ -44,16 +44,17 @@ class Geocode extends Http
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
-                throw new \Exception('Mapping failure: ' . $error->getMessage());
+
+                return new Error($x->json('data')['error']);
             }
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
-        throw new \Exception('The 7x Timezone API did not return a valid response.');
 
+        return new Error($x->json('data')['error']);
     }
 
-    public function search(string $searchString): GeocodeDTO|\Exception
+    public function search(string $searchString): GeocodeDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->get($this->baseurl . $this->apiurl . "/geocode/$searchString");
@@ -64,13 +65,14 @@ class Geocode extends Http
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
-                throw new \Exception('Mapping failure: ' . $error->getMessage());
+
+                return new Error($x->json('data')['error']);
             }
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
-        throw new \Exception('The 7x Timezone API did not return a valid response.');
 
+        return new Error($x->json('data')['error']);
     }
 
 

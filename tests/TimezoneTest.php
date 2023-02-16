@@ -4,6 +4,7 @@ namespace SevenEx\Sdk\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
+use SevenEx\DTO\Error;
 use SevenEx\DTO\Timezone\Timezone as TimezoneDTO;
 use SevenEx\SDK\Timezone;
 

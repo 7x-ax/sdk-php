@@ -4,6 +4,7 @@ namespace SevenEx\SDK;
 
 use CuyZ\Valinor\Mapper\MappingError;
 use CuyZ\Valinor\Mapper\Source\Source;
+use SevenEx\DTO\Error;
 use SevenEx\DTO\Timezone\Timezone as TimezoneDTO;
 use SevenEx\Utils\Mapper;
 
@@ -11,7 +12,7 @@ class Timezone extends Http
 {
 
     protected string $apiurl = '/timezone/v1';
-    public function get(float $latitude, float $longitude): TimezoneDTO|\Exception
+    public function get(float $latitude, float $longitude): TimezoneDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->get($this->baseurl . $this->apiurl . "/bycoordinates/$latitude,$longitude");
@@ -22,12 +23,14 @@ class Timezone extends Http
             } catch (MappingError $error) {
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
-                throw new \Exception('Mapping failure: ' . $error->getMessage());
+
+                return new Error($x->json('data')['error']);
             }
         }
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
-        throw new \Exception('The 7x Timezone API did not return a valid response.');
+
+        return new Error($x->json('data')['error']);
 
     }
 
