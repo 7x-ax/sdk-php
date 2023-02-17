@@ -15,6 +15,7 @@ class Timezone extends Http
     public function get(float $latitude, float $longitude): TimezoneDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->withUserAgent($this->useragent)
             ->get($this->baseurl . $this->apiurl . "/bycoordinates/$latitude,$longitude");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);

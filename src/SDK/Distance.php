@@ -15,6 +15,7 @@ class Distance extends Http
                                      float $toLatitude, float $toLongitude, string $unit = 'km'): DistanceDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->withUserAgent($this->useragent)
             ->get($this->baseurl . $this->apiurl . "/bycoordinates/$fromLatitude,$fromLatitude,$toLatitude,$toLongitude?unit=$unit");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
@@ -37,6 +38,7 @@ class Distance extends Http
     public function getByAddress(string $from, string $to, string $unit = 'km'): DistanceDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->withUserAgent($this->useragent)
             ->get($this->baseurl . $this->apiurl . "/byaddress/$from/$to?unit=$unit");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);

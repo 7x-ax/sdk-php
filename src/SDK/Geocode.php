@@ -15,6 +15,7 @@ class Geocode extends Http
     public function geocode(string $location): GeocodeDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->withUserAgent($this->useragent)
             ->get($this->baseurl . $this->apiurl . "/geocode/$location");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
@@ -36,6 +37,7 @@ class Geocode extends Http
     public function reverse(string $latitude, string $longitude): GeocodeDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->withUserAgent($this->useragent)
             ->get($this->baseurl . $this->apiurl . "/reverse/$latitude,$longitude");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
@@ -57,6 +59,7 @@ class Geocode extends Http
     public function search(string $searchString): GeocodeDTO|Error
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
+            ->withUserAgent($this->useragent)
             ->get($this->baseurl . $this->apiurl . "/geocode/$searchString");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
