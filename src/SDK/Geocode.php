@@ -24,7 +24,7 @@ class Geocode extends Http
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
 
-                return new Error($x->json('data')['error']);
+                return new Error($error->getMessage());
             }
         }
 
@@ -45,7 +45,7 @@ class Geocode extends Http
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
 
-                return new Error($x->json('data')['error']);
+                return new Error($error->getMessage());
             }
         }
 
@@ -66,7 +66,7 @@ class Geocode extends Http
                 $this->logger->error($error->getMessage());
                 Mapper::logErrors($this->logger, $error);
 
-                return new Error($x->json('data')['error']);
+                return new Error($error->getMessage());
             }
         }
 

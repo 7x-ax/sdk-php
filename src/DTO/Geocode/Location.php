@@ -11,7 +11,7 @@ final class Location
         readonly ?string $region,
         readonly ?string $county,
         readonly ?string $locality,
-        readonly string $continent
+        readonly ?string $continent
     ) {}
 
 }
