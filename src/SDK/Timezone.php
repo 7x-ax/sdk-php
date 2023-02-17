@@ -30,7 +30,7 @@ class Timezone extends Http
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
 
-        return new Error($x->json('data')['error']);
+        return new Error($x->body());
 
     }
 

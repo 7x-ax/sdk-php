@@ -30,7 +30,7 @@ class Geocode extends Http
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
 
-        return new Error($x->json('data')['error']);
+        return new Error($x->body());
     }
 
     public function reverse(string $latitude, string $longitude): GeocodeDTO|Error
@@ -51,7 +51,7 @@ class Geocode extends Http
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
 
-        return new Error($x->json('data')['error']);
+        return new Error($x->body());
     }
 
     public function search(string $searchString): GeocodeDTO|Error
@@ -72,7 +72,7 @@ class Geocode extends Http
 
         $this->logger->error('Response NOT OK', ['response' => $x->json()]);
 
-        return new Error($x->json('data')['error']);
+        return new Error($x->body());
     }
 
 

@@ -17,6 +17,8 @@ class Http
 
     protected string $baseurl = 'https://api.7x.ax';
 
+    protected string $usergent = "7x/sdk/php/1.3";
+
     public function __construct(string $apikey, string $logLevel = LogLevel::INFO)
     {
         $this->logger = new Logger('7x');
