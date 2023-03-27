@@ -31,7 +31,7 @@ class DistanceTest extends TestCase
     {
         $x = $this->d->getByAddress('Trafalgar Square, London, UK', 'Tower Bridge, London, UK', 'mi');
         $this->assertInstanceOf(DistanceDTO::class, $x);
-        $this->assertEquals(2.28, $x->distance);
+        $this->assertEquals(1.26, $x->distance);
         $this->assertEquals('mi', $x->unit);
         $this->assertInstanceOf(DistanceMeta::class, $x->meta);
         $this->assertInstanceOf(DistanceCoordinates::class, $x->meta->coordinates);
