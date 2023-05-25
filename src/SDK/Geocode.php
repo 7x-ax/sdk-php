@@ -60,7 +60,7 @@ class Geocode extends Http
     {
         $x = $this->http->withHeaders(['apikey' => $this->apikey])
             ->withUserAgent($this->useragent)
-            ->get($this->baseurl . $this->apiurl . "/geocode/$searchString");
+            ->get($this->baseurl . $this->apiurl . "/search/$searchString");
         if ($x->status() === 200) {
             $this->logger->debug('Response OK', ['response' => $x->json()]);
             try {
