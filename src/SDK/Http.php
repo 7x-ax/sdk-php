@@ -15,12 +15,13 @@ class Http
 
     public Logger $logger;
 
-    protected string $baseurl = 'https://api.7x.ax';
+    protected string $baseurl;
 
-    protected string $useragent = "7x/sdk/php/1.3";
+    protected string $useragent = "7x/sdk/php/1.4";
 
-    public function __construct(string $apikey, string $logLevel = LogLevel::INFO)
+    public function __construct(string $apikey, string $baseurl = 'https://api.7x.ax', string $logLevel = LogLevel::INFO)
     {
+        $this->baseurl = $baseurl;
         $this->logger = new Logger('7x');
         $this->logger->pushHandler(new StreamHandler('php://stdout', $logLevel));
         $this->apikey = $apikey;
