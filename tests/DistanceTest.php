@@ -14,7 +14,7 @@ class DistanceTest extends TestCase
     public Distance $d;
     protected function setUp(): void
     {
-        $this->d = new Distance(getenv('APIKEY'), LogLevel::DEBUG);
+        $this->d = new Distance(getenv('APIKEY'));
     }
 
     public function testDistanceByCoordinates()

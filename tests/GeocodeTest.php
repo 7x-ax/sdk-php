@@ -15,7 +15,7 @@ class GeocodeTest extends TestCase
     public Geocode $g;
     protected function setUp(): void
     {
-        $this->g = new Geocode(getenv('APIKEY'), LogLevel::DEBUG);
+        $this->g = new Geocode(getenv('APIKEY'));
     }
 
     public function testGeocode()

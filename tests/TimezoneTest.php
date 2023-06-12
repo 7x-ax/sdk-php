@@ -13,7 +13,7 @@ class TimezoneTest extends TestCase
     public Timezone $tz;
     protected function setUp(): void
     {
-        $this->tz = new Timezone(getenv('APIKEY'), LogLevel::DEBUG);
+        $this->tz = new Timezone(getenv('APIKEY'));
     }
 
     public function testTimezone()
