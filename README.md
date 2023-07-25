@@ -92,3 +92,30 @@ foreach ($result->objects as $reversed) {
     var_dump($reversed->coordinates); // Instance of SevenEx\DTO\Common\Coordinates
     var_dump($reversed->location); // Instance of SevenEx\DTO\Geocode\Location
 }
+```
+
+#### Numbers
+```php
+use Psr\Log\LogLevel;
+use SevenEx\SDK\Numbers;
+
+$g = new Numbers('API_KEY', LogLevel::DEBUG);
+$result = $g->arabicToLatin('١٢٣٤٥٦٧٨٩٠');
+$result = $g->latinToArabic('1234567890');
+// $result is an instance of SevenEx\DTO\Numbers\Arabic.
+$result = $g->arabicToHtml('١٢٣٤٥٦٧٨٩٠');
+// $result is an instance of SevenEx\DTO\Numbers\Html.
+```
+
+#### Date and Time
+```php
+use Psr\Log\LogLevel;
+use SevenEx\SDK\DateAndTime;
+
+$g = new DateAndTime('API_KEY', LogLevel::DEBUG);
+$result = $g->byTimezone('Europe/London'); // or
+$result = $g->byAddress('Trafalgar Square, London, UK'); // or
+$result = $g->byCoordinates('51.507351', '-0.127758');
+// $result is an instance of SevenEx\DTO\DateAndTime\DateAndTime.
+
+```
