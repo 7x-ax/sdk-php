@@ -5,7 +5,7 @@ namespace SevenEx\DTO\DateAndTime;
 final class Year
 {
     public function __construct(
-        readonly int $year,
+        readonly int $number,
         readonly bool $leap
     ) {}
 }

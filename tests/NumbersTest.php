@@ -14,8 +14,8 @@ class NumbersTest extends TestCase
     public Timezone $tz;
     protected function setUp(): void
     {
-        //$this->numbers= new Numbers(getenv('APIKEY'));
-        $this->numbers= new Numbers('d3ec4acaa7978ba6329845ee15fd66d9');
+        $this->numbers= new Numbers(getenv('APIKEY'));
+
     }
 
     public function testArabic()
