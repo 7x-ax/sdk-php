@@ -3,7 +3,7 @@
 namespace SevenEx\Sdk\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SevenEx\DTO\Geolocate\Geolocate as GelolocateDTO;
+use SevenEx\DTO\Geolocate\Geolocate as GeolocateDTO;
 use SevenEx\SDK\Geolocate;
 
 class GeolocateTest extends TestCase
@@ -17,7 +17,7 @@ class GeolocateTest extends TestCase
     public function testIp()
     {
         $x = $this->gl->ip('109.74.197.73');
-        $this->assertInstanceOf(GelolocateDTO::class, $x);
+        $this->assertInstanceOf(GeolocateDTO::class, $x);
         $this->assertEquals('US', $x->isp_country->iso_code);
     }
 
