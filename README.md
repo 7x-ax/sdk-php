@@ -117,5 +117,30 @@ $result = $g->byTimezone('Europe/London'); // or
 $result = $g->byAddress('Trafalgar Square, London, UK'); // or
 $result = $g->byCoordinates('51.507351', '-0.127758');
 // $result is an instance of SevenEx\DTO\DateAndTime\DateAndTime.
+```
 
+#### Geolocation
+```php
+use Psr\Log\LogLevel;
+use SevenEx\SDK\Geolocate;
+
+$f = new Geolocate('API_KEY', LogLevel::DEBUG);
+$result = $f->ip('109.74.197.73');
+// Result is an instance of SevenEx\DTO\Geolocate\Geolocate.
+```
+
+#### Airports
+```php
+use Psr\Log\LogLevel;
+use SevenEx\SDK\Airports;
+
+$a = new Airports('API_KEY', LogLevel::DEBUG);
+$a->airport('LHR'); // returns is an instance of SevenEx\DTO\Airports\Airports
+$a->airports(type: 'large_airport', country: 'ae'); // returns is an instance of SevenEx\DTO\Airports\SingleAirports
+$a->types(); // returns is an instance of SevenEx\DTO\Airports\Types
+$a->countries(); // returns is an instance of SevenEx\DTO\Airports\CountriesCollection
+$a->country('ae'); // returns is an instance of SevenEx\DTO\Airports\CountriesCollection
+$a->continents(); // returns is an instance of SevenEx\DTO\Airports\ContinentsCollection
+$a->continent('eu'); // returns is an instance of SevenEx\DTO\Airports\ContinentCollection
+```
 ```
