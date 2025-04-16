@@ -2,6 +2,8 @@
 
 # A PHP SDK for 7x APIs
 
+## This repo has now moved to https://1x.ax/7x/sdks/php.
+
 To use this SDK, you will need an API Key. Sign up on https://7x.ax to get started.
 
 ## Install
